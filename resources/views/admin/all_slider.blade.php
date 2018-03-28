@@ -22,28 +22,25 @@
 		<div class="row-fluid sortable">		
 			<div class="box span12">
 				<div class="box-header" data-original-title>
-					<h2><i class="halflings-icon user"></i><span class="break"></span>Members</h2>
+					<h2><i class="halflings-icon user"></i><span class="break"></span>Slider</h2>
 				</div>
 				<div class="box-content">
 					<table class="table table-striped table-bordered bootstrap-datatable datatable">
 					  <thead>
 						  <tr>
-							  <th>Category ID</th>
-							  <th>Category Name</th>
-							  <th>Category Descripton</th>
+							  <th>Slider ID</th>
+							  <th>Slider Image</th>							 
 							  <th>Status</th>
 							  <th>Actions</th>
 						  </tr>
 					  </thead> 
-                 @foreach( $all_category_info as $v_category)
+                 @foreach( $all_slider as $v_slider)
 					  <tbody>
 						<tr>
-						<td>{{ $v_category->category_id }}</td>
-						<td class="center">{{ $v_category->category_name }}</td>
-						<td class="center">{{$v_category->category_description}}</td>
-
+						<td>{{ $v_slider->slider_id }}</td>
+                       <td> <img src="{{URL::to($v_slider->slider_image)}}" style="height: 80px; width:200px;"></td>
 						<td class="center">
-							@if($v_category->publication_status==1)
+							@if($v_slider->publication_status==1)
 							<span class="label label-success">Active</span>
 							@else
                                 <span class="label label-danger">Unactive</span>
@@ -51,20 +48,17 @@
 						</td>
 
 						<td class="center">
-                            @if($v_category->publication_status==1)
-							<a class="btn btn-danger" href="{{URL::to('/unactive_category/'.$v_category->category_id)}}">
+                            @if($v_slider->publication_status==1)
+							<a class="btn btn-danger" href="{{URL::to('/unactive-slider/'.$v_slider->slider_id)}}">
 								<i class="halflings-icon white thumbs-down"></i>  
 							</a>
                             @else
-                             <a class="btn btn-success" href="{{URL::to('/active_category/'.$v_category->category_id)}}">
+                             <a class="btn btn-success" href="{{URL::to('/active-slider/'.$v_slider->slider_id)}}">
 								<i class="halflings-icon white thumbs-up"></i>  
 							</a>
                             @endif
 
-							<a class="btn btn-info" href="{{URL::to('/edit-category/'.$v_category->category_id)}}">
-								<i class="halflings-icon white edit"></i>  
-							</a>
-							<a class="btn btn-danger" href="{{URL::to('/delete-category/'.$v_category->category_id)}}" id="delete">
+							<a class="btn btn-danger" href="{{URL::to('/delete-product/'.$v_slider->slider_id)}}" id="delete">
 								<i class="halflings-icon white trash"></i> 
 							</a>
 						</td>
